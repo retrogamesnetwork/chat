@@ -49,6 +49,18 @@ button[type="submit"] {
   </style>
 </head>
 <body>
+  <script>
+    function checkUser() {
+      if (localStorage.getItem("username") == "" || null) {
+        window.location.href = "https://retrogamesnetwork.github.io/chat/login";
+        console.log("user not logged in")
+      } else {
+        console.log("user logged in");
+      }
+    }
+    
+    window.onload = checkUser();
+  </script>
   <div id="app">
     <div id="messages"></div>
     <form id="message-form">
