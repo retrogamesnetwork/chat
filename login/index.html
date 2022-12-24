@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>Login to access CHAT</title>
+<style>
+#loginForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#loginForm label {
+  margin: 10px 0;
+}
+
+#loginForm input[type="text"], #loginForm input[type="password"] {
+  width: 200px;
+  height: 25px;
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
+#loginForm input[type="submit"] {
+  width: 100px;
+  height: 30px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+<script>
+const loginForm = document.getElementById('loginForm');
+
+loginForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+
+  localStorage.setItem('username', username);
+});
+
+function checkUser() {
+const username = localStorage.getItem('username');
+  if(username != null || "") {
+    window.location.href = "https://retrogamesnetwork.github.io/chat/";
+    console.log("user logged in");
+  } else {
+    console.log("user not logged in");
+  }
+}
+
+window.onload = checkUser();
+</script>
+<h1>Login to access CHAT</h1>
+<form id="loginForm">
+  <label for="username">Username:</label><br>
+  <input type="text" id="username" name="username"><br>
+  <label for="password">Password:</label><br>
+  <input type="password" id="password" name="password"><br><br>
+  <input type="submit" value="Login">
+</form> 
+
+</body>
+</html>
