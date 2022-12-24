@@ -20,23 +20,6 @@ function sendMessage(e) {
   const timestamp = Date.now();
   const messageInput = document.getElementById("message-input");
   const message = messageInput.value;
-  // Get a reference to the file input
-    const fileInput = document.querySelector('input');
-
-    // Listen for the change event so we can capture the file
-    fileInput.addEventListener('change', (e) => {
-        // Get a reference to the file
-        const file = e.target.files[0];
-
-        // Encode the file using the FileReader API
-        const reader = new FileReader();
-        reader.onloadend = () => {
-            var r_result = reader.result;
-            // Logs data:<type>;base64,wL2dvYWwgbW9yZ...
-        };
-        reader.readAsDataURL(file);
-    });
-  const profilepic = r_result;
 
   // clear the input box
   messageInput.value = "";
@@ -50,7 +33,6 @@ function sendMessage(e) {
   db.ref("messages/" + timestamp).set({
     username,
     message,
-    profilepic,
   });
 }
 
@@ -60,7 +42,7 @@ fetchChat.on("child_added", function (snapshot) {
   const messages = snapshot.val();
   const message = `<li class=${
     username === messages.username ? "sent" : "receive"
-  }><span><img src='${messages.profilepic}' style='width:10px;height:10px;' /><strong>${messages.username}</strong><br> </span><small>${messages.message}</small></li><br>`;
+  }><span><strong>${messages.username}</strong><br> </span><small>${messages.message}</small></li><br>`;
   // append the message on the page
   document.getElementById("messages").innerHTML += message;
 });
